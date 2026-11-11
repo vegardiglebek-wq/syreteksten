@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Før du publiserer</title>
-<meta name="description" content="Interaktiv sjekkliste for innholdsprodusenter på intranettet: plassering, fem prinsipper og brukervennlighet.">
+<meta name="description" content="Interaktiv sjekkliste for innholdsprodusenter på ansattsidene: plassering, fem prinsipper og brukervennlighet.">
 <style>
 :root{--bg:#FFFFFF;--ink:#000000;--ink2:#2B2B2B;--muted:#4A4A4A;--line:#B2B3B7;--line2:#E3E3E6;--btn-line:#000000;--accent:#3E31D6;--accent-dark:#000000;--accent-soft:#E6ECFF;--ok:#2EC483;--ok-soft:#CEFFDF;--bad:#DD0000;--bad-soft:#FEE0E0;--warn:#FEA11B;--warn-soft:#FFE8D4;--warn-ink:#000000}
 *{box-sizing:border-box}
@@ -91,17 +91,17 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
 
   var DATA = {
     tree: {
-      q1: { q: 'Er dette noe ansatte trenger for å gjøre jobben sin?', help: 'Intranettet er for ansatte. Det studenter, eksterne eller allmennheten skal lese, hører hjemme andre steder.',
+      q1: { q: 'Er dette noe ansatte trenger for å gjøre jobben sin?', help: 'Disse sidene er for ansatte. Info til andre målgrupper skal ikke postes her.',
         options: [
           { label: 'Ja', sub: 'Målgruppen er ansatte', next: 'qExists' },
           { label: 'Nei, det er mest for andre', sub: 'Studenter, eksterne eller allmennheten', result: 'notIntranet' }
         ] },
-      qExists: { q: 'Finnes informasjonen allerede et annet sted?', help: 'Søk på intranettet før du lager noe nytt. Det finnes ofte en side som sier nesten det samme.',
+      qExists: { q: 'Finnes informasjonen allerede et annet sted?', help: 'Søk på ansattsidene før du lager noe nytt. Det finnes ofte en side som sier nesten det samme.',
         options: [
           { label: 'Ja, den finnes', sub: 'Helt eller delvis, på en annen side', result: 'existing' },
           { label: 'Nei, den er ny', sub: 'Jeg har sjekket', next: 'q2' }
         ] },
-      q2: { q: 'Haster det, eller må alle få det med seg?', help: 'Intranettet er et oppslagsverk, ikke en sirene. Det som må nå frem i dag, trenger en kanal som dytter.',
+      q2: { q: 'Haster det, eller må alle få det med seg?', help: 'Ansattsidene er et oppslagsverk, ikke en sirene. Det som må nå frem i dag, trenger en kanal som dytter.',
         options: [
           { label: 'Ja, det haster eller er kritisk', sub: 'For eksempel driftsavbrudd, frist i dag, sikkerhet', result: 'channel' },
           { label: 'Nei', sub: 'Folk kan finne det når de trenger det', next: 'q3' }
@@ -123,7 +123,7 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
         ] }
     },
     results: {
-      notIntranet: { title: 'Ikke på intranettet – [ekstern nettside eller studentkanal]', why: 'Intranettet er for det ansatte trenger i jobben. Innhold for studenter, eksterne eller allmennheten hører hjemme i kanalene de faktisk bruker.', next: 'Ta kontakt med [ansvarlig for ekstern nettside eller studentkanal].', tone: 'red' },
+      notIntranet: { title: 'Ikke på ansattsidene – [ekstern nettside eller studentkanal]', why: 'Ansattsidene er for det ansatte trenger i jobben. Innhold for studenter, eksterne eller allmennheten hører hjemme i kanalene de faktisk bruker.', next: 'Ta kontakt med [ansvarlig for ekstern nettside eller studentkanal].', tone: 'red' },
       existing: { title: 'Ikke publiser – oppdater eksisterende side', why: 'To versjoner av samme informasjon glir fra hverandre, og leserne vet ikke hvilken de skal stole på.', next: 'Kontakt den som eier siden, og foreslå endringen der. Trenger du å nevne det andre steder: lenk til kilden.', tone: 'red' },
       channel: { title: '[Annen kanal]', why: 'Det som haster eller må nå alle, bør sendes aktivt, for eksempel på e-post eller i [annen kanal].', next: 'Send meldingen der. Lag en side i tillegg bare hvis informasjonen skal kunne slås opp senere – og lenk da til den.', tone: 'yellow' },
       central: { title: '[Sentral side]', why: 'Varig informasjon som gjelder alle ansatte, hører hjemme på én felles side.', next: 'Sjekk at siden får en oppgavetittel og en ansvarlig eier. Fortsett til steg 2.', tone: 'green' },
@@ -200,7 +200,7 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
     var ans = state.ans, fixes = [], unanswered = 0, critical = false;
     var res = state.result ? DATA.results[state.result] : null;
     if (state.result === 'existing' || state.result === 'notIntranet') {
-      fixes.push({ text: state.result === 'existing' ? 'Ikke publiser ny side – oppdater den eksisterende og lenk dit.' : 'Ikke publiser på intranettet – bruk [ekstern nettside eller studentkanal].', where: 'Steg 1 · Plassering', critical: true });
+      fixes.push({ text: state.result === 'existing' ? 'Ikke publiser ny side – oppdater den eksisterende og lenk dit.' : 'Ikke publiser på ansattsidene – bruk [ekstern nettside eller studentkanal].', where: 'Steg 1 · Plassering', critical: true });
       critical = true;
     }
     DATA.principles.forEach(function (p) {
@@ -260,7 +260,7 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
       '<h2 id="screen-title" tabindex="-1" style="font-size:26px">Tre minutter før du trykker «Publiser»</h2>' +
       '<p class="ink2" style="max-width:60ch">Bruk tre minutter nå, så slipper hundrevis av kolleger å bruke tre minutter hver på å lete.</p>' +
       '<ol class="stack ink2" style="margin:0;padding-left:22px;gap:8px">' +
-      '<li><strong style="color:var(--ink)">Hører dette hjemme på intranettet – og hvor?</strong> Noen få spørsmål gir deg en anbefalt plassering.</li>' +
+      '<li><strong style="color:var(--ink)">Hører dette hjemme på ansattsidene – og hvor?</strong> Noen få spørsmål gir deg en anbefalt plassering.</li>' +
       '<li><strong style="color:var(--ink)">Sjekk mot de fem prinsippene.</strong> Ja/nei-spørsmål med eksempler på bra og dårlig praksis.</li>' +
       '<li><strong style="color:var(--ink)">Er det faktisk brukervennlig?</strong> Tre raske selvtester.</li></ol>' +
       '<p class="ink2">Til slutt får du grønt, gult eller rødt lys og en kort liste over hva som bør fikses. Ingen karakterer, og ingen rapport til noen.</p>' +
@@ -269,7 +269,7 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
   }
 
   function viewStep1() {
-    var h = '<section class="stack g20">' + heading('Steg 1 av 3', 'Hører dette hjemme på intranettet – og hvor?');
+    var h = '<section class="stack g20">' + heading('Steg 1 av 3', 'Hører dette hjemme på ansattsidene – og hvor?');
     if (state.path.length) {
       h += '<div class="row" style="gap:8px"><span class="muted" style="font-size:13px">Dine svar:</span>' +
         state.path.map(function (p) { return '<span class="chip">' + esc(p.label) + '</span>'; }).join('') + '</div>';
@@ -302,7 +302,7 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
   }
 
   function viewStep2() {
-    var h = '<section class="stack g20">' + heading('Steg 2 av 3', 'Sjekk mot de fem prinsippene', 'Svar ja eller nei. Ærlige nei-svar havner på fikselisten – og det er hele poenget.');
+    var h = '<section class="stack g20">' + heading('Steg 2 av 3', 'Sjekk mot de fem prinsippene');
     DATA.principles.forEach(function (p) {
       var answered = p.checks.filter(function (c) { return state.ans[c.id]; }).length;
       var open = !!state.open[p.id];
@@ -322,7 +322,7 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
   }
 
   function viewStep3() {
-    var h = '<section class="stack g20">' + heading('Steg 3 av 3', 'Er det faktisk brukervennlig?', 'Tre raske tester. Har du en kollega i nærheten, blir de bedre. Ellers later du som du er en.');
+    var h = '<section class="stack g20">' + heading('Steg 3 av 3', 'Er det faktisk brukervennlig?', 'Ansattsidene er et oppslagsverk, ikke et nyhetssted.');
     DATA.tests.forEach(function (t) {
       h += '<article class="card" style="gap:12px"><h3>' + esc(t.name) + '</h3><p class="ink2">' + esc(t.how) + '</p>' +
         '<div class="check"><p style="font-weight:600">' + esc(t.q) + '</p>' + pills(t.id, 'Bestått', 'Ikke bestått', t.name) + '</div></article>';
