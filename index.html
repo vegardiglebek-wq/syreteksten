@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Før du publiserer</title>
+<meta name="description" content="Interaktiv sjekkliste for innholdsprodusenter på intranettet: plassering, fem prinsipper og brukervennlighet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F6F3;--ink:#1A1A1A;--ink2:#3D3D39;--muted:#5A5A55;--line:#E3E3DE;--line2:#EEEEEA;--btn-line:#C9C9C2;--accent:#1F4E8C;--accent-dark:#163A69;--accent-soft:#EAEFF6;--ok:#17603A;--ok-soft:#E8F3EC;--bad:#9C2A20;--bad-soft:#FBEAE8;--warn-soft:#FFF4D6;--warn-ink:#7A5200}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:40px 16px 80px;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3,p{margin:0}
+h1{font-size:40px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
+h2{font-size:28px;line-height:1.2}
+h3{font-size:20px;line-height:1.3}
+h2:focus{outline:none}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.stepno{font-size:14px;font-weight:600;color:var(--accent)}
+.muted{color:var(--muted)}
+.ink2{color:var(--ink2)}
+.stack{display:flex;flex-direction:column}
+.g6{gap:6px}.g10{gap:10px}.g12{gap:12px}.g14{gap:14px}.g16{gap:16px}.g18{gap:18px}.g20{gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.between{justify-content:space-between}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn{border-radius:8px;padding:12px 22px;min-height:48px;font-size:16px;font-weight:600}
+.btn-primary{background:var(--accent);color:#fff;border:0}
+.btn-primary:hover{background:var(--accent-dark)}
+.btn-secondary{background:#fff;color:var(--ink);border:1px solid var(--btn-line)}
+.btn-link{background:transparent;color:var(--accent);border:0;padding:12px 8px;text-decoration:underline}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.step{text-align:left;border-radius:10px;padding:10px 14px;min-height:56px;background:#fff;color:var(--ink2);border:1.5px solid var(--line)}
+.step.done{background:var(--accent-soft);color:var(--accent-dark);border-color:#C5D3E8}
+.step.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.step span{display:block;font-weight:600}
+.step .n{font-size:12px;opacity:.85}
+.step .l{font-size:14px}
+.chip{font-size:13px;background:var(--accent-soft);color:var(--accent-dark);border-radius:999px;padding:4px 10px}
+.opt{text-align:left;background:#fff;border:1.5px solid var(--btn-line);border-radius:10px;padding:14px 18px;min-height:52px;display:flex;flex-direction:column;gap:2px;color:var(--ink);width:100%}
+.opt:hover{border-color:var(--accent)}
+.opt .t{font-size:16px;font-weight:600}
+.opt .s{font-size:14px;color:var(--muted)}
+.box{border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px}
+.tone-green{background:var(--ok-soft);border:1.5px solid #9FCDB0}
+.tone-yellow{background:var(--warn-soft);border:1.5px solid #E8C96A}
+.tone-red{background:var(--bad-soft);border:1.5px solid #E5A79F}
+.check{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid var(--line2);padding-top:14px}
+.check p{flex:1 1 360px;min-width:0}
+.pill{border-radius:8px;padding:8px 16px;min-height:44px;min-width:64px;font-size:15px;font-weight:600;background:#fff;color:var(--ink);border:1.5px solid var(--btn-line)}
+.pill.yes[aria-pressed="true"]{background:var(--ok);color:#fff;border-color:var(--ok)}
+.pill.no[aria-pressed="true"]{background:var(--bad);color:#fff;border-color:var(--bad)}
+.tagline{margin-top:-8px;color:var(--muted);font-size:15px;font-style:italic}
+.toggle{align-self:flex-start;background:transparent;border:0;padding:8px 0;min-height:44px;color:var(--accent);font-size:15px;font-weight:600}
+.examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.ex{border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.ex.good{background:var(--ok-soft)}.ex.bad{background:var(--bad-soft)}
+.ex .h{font-size:13px;font-weight:700}
+.ex.good .h{color:var(--ok)}.ex.bad .h{color:var(--bad)}
+.dot{width:22px;height:22px;border-radius:50%;flex:0 0 auto}
+.fixes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.fixes li{display:flex;gap:12px;align-items:flex-start;border-top:1px solid var(--line2);padding-top:10px}
+.tag{flex:0 0 auto;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.tag.must{background:var(--bad-soft);color:var(--bad)}
+.tag.should{background:var(--warn-soft);color:var(--warn-ink)}
+textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;border:1px solid var(--btn-line);border-radius:8px;padding:12px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width:560px){h1{font-size:32px}h2{font-size:24px}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.card,.box{padding:20px}}
+@media print{.no-print{display:none!important}body{background:#fff}.wrap{padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="stack g20">
+    <div class="stack g6">
+      <p class="eyebrow">Manual for innholdsprodusenter</p>
+      <h1>Før du publiserer</h1>
+    </div>
+    <nav class="no-print" aria-label="Steg"><div class="steps" id="steps"></div></nav>
+  </header>
+  <main id="app"></main>
+  <div id="live" class="sr-only" aria-live="polite"></div>
+</div>
+<noscript><p style="max-width:860px;margin:0 auto;padding:0 16px">Denne manualen trenger JavaScript for å fungere.</p></noscript>
+
+<script>
+(function () {
+  'use strict';
+
+  var DATA = {
+    tree: {
+      q1: { q: 'Er dette noe ansatte trenger for å gjøre jobben sin?', help: 'Intranettet er for ansatte. Det studenter, eksterne eller allmennheten skal lese, hører hjemme andre steder.',
+        options: [
+          { label: 'Ja', sub: 'Målgruppen er ansatte', next: 'qExists' },
+          { label: 'Nei, det er mest for andre', sub: 'Studenter, eksterne eller allmennheten', result: 'notIntranet' }
+        ] },
+      qExists: { q: 'Finnes informasjonen allerede et annet sted?', help: 'Søk på intranettet før du lager noe nytt. Det finnes ofte en side som sier nesten det samme.',
+        options: [
+          { label: 'Ja, den finnes', sub: 'Helt eller delvis, på en annen side', result: 'existing' },
+          { label: 'Nei, den er ny', sub: 'Jeg har sjekket', next: 'q2' }
+        ] },
+      q2: { q: 'Haster det, eller må alle få det med seg?', help: 'Intranettet er et oppslagsverk, ikke en sirene. Det som må nå frem i dag, trenger en kanal som dytter.',
+        options: [
+          { label: 'Ja, det haster eller er kritisk', sub: 'For eksempel driftsavbrudd, frist i dag, sikkerhet', result: 'channel' },
+          { label: 'Nei', sub: 'Folk kan finne det når de trenger det', next: 'q3' }
+        ] },
+      q3: { q: 'Er det en varig opplysning eller noe som skjer nå?', help: 'Varig = folk slår det opp om et halvt år. Nå = det er gammelt om noen uker.',
+        options: [
+          { label: 'Varig opplysning', sub: 'Rutiner, retningslinjer, «slik gjør du»', next: 'q4' },
+          { label: 'Noe som skjer nå', sub: 'Endringer, arrangementer, beslutninger', next: 'q5' }
+        ] },
+      q4: { q: 'Hvem gjelder dette?', help: 'Velg den smaleste gruppen som dekker alle som trenger det.',
+        options: [
+          { label: 'Alle ansatte', sub: 'Gjelder på tvers av hele organisasjonen', result: 'central' },
+          { label: 'Ett fakultet eller én enhet', sub: 'Lokale rutiner og tillegg', result: 'local' }
+        ] },
+      q5: { q: 'Hvem gjelder nyheten?', help: 'En nyhet til alle bør være relevant for de fleste.',
+        options: [
+          { label: 'Alle ansatte', sub: '', result: 'newsCentral' },
+          { label: 'Ett fakultet eller én enhet', sub: '', result: 'newsLocal' }
+        ] }
+    },
+    results: {
+      notIntranet: { title: 'Ikke på intranettet – [ekstern nettside eller studentkanal]', why: 'Intranettet er for det ansatte trenger i jobben. Innhold for studenter, eksterne eller allmennheten hører hjemme i kanalene de faktisk bruker.', next: 'Ta kontakt med [ansvarlig for ekstern nettside eller studentkanal].', tone: 'red' },
+      existing: { title: 'Ikke publiser – oppdater eksisterende side', why: 'To versjoner av samme informasjon glir fra hverandre, og leserne vet ikke hvilken de skal stole på.', next: 'Kontakt den som eier siden, og foreslå endringen der. Trenger du å nevne det andre steder: lenk til kilden.', tone: 'red' },
+      channel: { title: '[Annen kanal]', why: 'Det som haster eller må nå alle, bør sendes aktivt, for eksempel på e-post eller i [annen kanal].', next: 'Send meldingen der. Lag en side i tillegg bare hvis informasjonen skal kunne slås opp senere – og lenk da til den.', tone: 'yellow' },
+      central: { title: '[Sentral side]', why: 'Varig informasjon som gjelder alle ansatte, hører hjemme på én felles side.', next: 'Sjekk at siden får en oppgavetittel og en ansvarlig eier. Fortsett til steg 2.', tone: 'green' },
+      local: { title: '[Fakultets-/instituttside]', why: 'Lokale rutiner hører hjemme nær de som bruker dem.', next: 'Finnes det en sentral side om samme tema, lenk til den og beskriv bare det som er lokalt.', tone: 'green' },
+      newsCentral: { title: '[Nyhet] – sentral', why: 'Noe som skjer nå og gjelder alle, passer som nyhet i den sentrale nyhetsflaten.', next: 'Lenk fra nyheten til en varig side hvis leseren skal gjøre noe.', tone: 'green' },
+      newsLocal: { title: '[Nyhet] – lokal', why: 'Noe som skjer nå i ett fakultet eller én enhet, passer som lokal nyhet.', next: 'Lenk fra nyheten til en varig side hvis leseren skal gjøre noe.', tone: 'green' }
+    },
+    principles: [
+      { id: 'p1', code: 'P1', name: 'Ta utgangspunkt i hva den ansatte skal gjøre, ikke i organisasjonskartet', tagline: 'Ansatte leter etter svar, ikke etter avdelinger.',
+        checks: [
+          { id: 'p1a', q: 'Beskriver tittelen en oppgave («Slik søker du permisjon») i stedet for en enhet («HR-seksjonen informerer»)?', fix: 'Skriv om tittelen så den beskriver oppgaven leseren skal løse.' },
+          { id: 'p1b', q: 'Er teksten skrevet til leseren («du»), ikke om organisasjonen?', fix: 'Skriv direkte til leseren og fortell hva hen skal gjøre.' }
+        ],
+        good: '«Slik søker du om permisjon» – tittelen sier hva leseren får gjort.',
+        bad: '«HR-seksjonen informerer om permisjonsordninger» – nå vet leseren hvem som skrev, men ikke om svaret står her.' },
+      { id: 'p2', code: 'P2', name: 'Én sannhet, ett sted', tagline: 'Når det samme står fire steder, blir tre av dem feil. Lenk heller enn å kopiere.',
+        checks: [
+          { id: 'p2a', q: 'Har du sjekket at innholdet ikke allerede finnes?', fix: 'Søk etter eksisterende innhold. Finnes det, oppdater det i stedet.', critical: true },
+          { id: 'p2b', q: 'Lenker du til kilden i stedet for å kopiere tekst fra den?', fix: 'Erstatt kopiert tekst med en lenke til kilden.' }
+        ],
+        good: '«Satsene finner du på siden Reiseregning.» – én lenke, alltid oppdatert.',
+        bad: 'En kopiert tabell med satser. Den er riktig helt til originalen endres.' },
+      { id: 'p3', code: 'P3', name: 'Det viktigste først, på et språk alle forstår', tagline: 'Svaret først, bakgrunnen etterpå, og like godt på engelsk som på norsk.',
+        checks: [
+          { id: 'p3a', q: 'Står svaret eller handlingen i første avsnitt?', fix: 'Flytt svaret eller handlingen opp i første avsnitt. Bakgrunn kan komme etterpå.' },
+          { id: 'p3b', q: 'Finnes det en engelsk versjon som er like god og like oppdatert som den norske?', fix: 'Lag en engelsk versjon som holder samme nivå, eller avklar med [ansvarlig for engelsk innhold] hvorfor den ikke trengs.' }
+        ],
+        good: '«Søk om permisjon i [selvbetjeningsportalen] senest fire uker før. Lederen din godkjenner søknaden.»',
+        bad: '«HR har over tid arbeidet med å forenkle rutinene …» – og svaret kommer først i fjerde avsnitt.' },
+      { id: 'p4', code: 'P4', name: 'Innholdet skal fungere for alle ansatte, uansett rolle, enhet og funksjonsevne', tagline: 'Universell utforming er minstekravet, ikke målet.',
+        checks: [
+          { id: 'p4a', q: 'Er lenketekstene beskrivende (ikke «klikk her» eller «les mer»)?', fix: 'Skriv lenketekster som sier hvor lenken går.' },
+          { id: 'p4b', q: 'Har alle bilder alt-tekst (eller er de markert som pynt)?', fix: 'Legg inn alt-tekst på alle meningsbærende bilder.', critical: true },
+          { id: 'p4c', q: 'Har du sjekket at teksten leses godt på mobil?', fix: 'Forhåndsvis på mobil. Kort ned lange avsnitt og brede tabeller.' }
+        ],
+        good: '«Les [retningslinjer for hjemmekontor].» – lenketeksten gir mening også når den leses alene.',
+        bad: '«Retningslinjene finner du [her].» – skjermlesere leser bare «her».' },
+      { id: 'p5', code: 'P5', name: 'Alt innhold har en eier og en utløpsdato', tagline: 'Sider uten eier skal ikke ha noen fremtid.',
+        checks: [
+          { id: 'p5a', q: 'Er det satt en ansvarlig person – ikke bare en enhet?', fix: 'Sett en navngitt person som ansvarlig for siden.', critical: true },
+          { id: 'p5b', q: 'Er det satt en utløpsdato eller en dato for neste gjennomgang?', fix: 'Sett en dato for neste gjennomgang (for eksempel om 6 eller 12 måneder).' }
+        ],
+        good: '«Ansvarlig: [Navn], HR-seksjonen · Neste gjennomgang: [måned år]»',
+        bad: '«Kontakt: HR» – uten navn og uten dato. Ingen vet når siden sist var riktig.' }
+    ],
+    tests: [
+      { id: 't1', name: 'Femsekunderstesten', how: 'Vis siden til en kollega i fem sekunder, og ta den bort.', q: 'Kunne kollegaen si hva siden handler om og hva man kan gjøre der?', fix: 'Gjør tittel og første avsnitt tydeligere, så hensikten er åpenbar med en gang.' },
+      { id: 't2', name: 'Skumlesingstesten', how: 'Les bare overskriftene og mellomtitlene, ingenting annet.', q: 'Gir overskriftene alene mening, og ser du hvor svaret står?', fix: 'Gjør mellomtitlene informative («Slik søker du» i stedet for «Prosess»).' },
+      { id: 't3', name: 'Nyansatt-testen', how: 'Les teksten som om du begynte i går.', q: 'Forstår en nyansatt alle ord og forkortelser?', fix: 'Forklar eller fjern interne forkortelser, systemnavn og fagord.' }
+    ]
+  };
+
+  var STATUSES = {
+    green: { title: 'Grønt – klar til publisering', text: 'Alt er sjekket og bestått. Publiser med god samvittighet, og sett av datoen for neste gjennomgang.', dot: '#17603A' },
+    yellow: { title: 'Gult – nesten der', text: 'Noen småting står igjen. De tar trolig kortere tid å fikse enn å forklare senere.', dot: '#B07A00' },
+    red: { title: 'Rødt – vent litt med å publisere', text: 'Noe vesentlig mangler. Bedre å vente en dag enn å rydde opp i et år.', dot: '#9C2A20' }
+  };
+
+  var STEPS = [['step1', 'Steg 1', 'Plassering'], ['step2', 'Steg 2', 'Fem prinsipper'], ['step3', 'Steg 3', 'Selvtester'], ['result', 'Resultat', 'Oppsummering']];
+  var ORDER = ['intro', 'step1', 'step2', 'step3', 'result'];
+
+  function fresh() { return { screen: 'intro', node: 'q1', path: [], result: null, ans: {}, open: {}, copied: false, copyFailed: false }; }
+  var state = fresh();
+
+  var app = document.getElementById('app');
+  var stepsEl = document.getElementById('steps');
+  var live = document.getElementById('live');
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function summary() {
+    var ans = state.ans, fixes = [], unanswered = 0, critical = false;
+    var res = state.result ? DATA.results[state.result] : null;
+    if (state.result === 'existing' || state.result === 'notIntranet') {
+      fixes.push({ text: state.result === 'existing' ? 'Ikke publiser ny side – oppdater den eksisterende og lenk dit.' : 'Ikke publiser på intranettet – bruk [ekstern nettside eller studentkanal].', where: 'Steg 1 · Plassering', critical: true });
+      critical = true;
+    }
+    DATA.principles.forEach(function (p) {
+      p.checks.forEach(function (c) {
+        if (ans[c.id] === 'no') { fixes.push({ text: c.fix, where: p.code + ' · ' + p.name, critical: !!c.critical }); if (c.critical) critical = true; }
+        else if (ans[c.id] !== 'yes') unanswered++;
+      });
+    });
+    DATA.tests.forEach(function (t) {
+      if (ans[t.id] === 'no') fixes.push({ text: t.fix, where: 'Steg 3 · ' + t.name, critical: false });
+      else if (ans[t.id] !== 'yes') unanswered++;
+    });
+    var tone = 'green';
+    if (critical || fixes.length >= 4) tone = 'red';
+    else if (fixes.length > 0 || unanswered > 0 || !res) tone = 'yellow';
+    return { fixes: fixes, unanswered: unanswered, tone: tone, status: STATUSES[tone], res: res };
+  }
+
+  function buildText(s) {
+    var ans = state.ans;
+    function mark(v) { return v === 'yes' ? '[x]' : (v === 'no' ? '[ ] NEI –' : '[ ] ikke besvart –'); }
+    var lines = ['FØR DU PUBLISERER – sjekkliste', '', 'Status: ' + s.status.title, 'Anbefalt plassering: ' + (s.res ? s.res.title : 'ikke valgt'), ''];
+    DATA.principles.forEach(function (p) {
+      lines.push(p.code + ' ' + p.name);
+      p.checks.forEach(function (c) { lines.push('  ' + mark(ans[c.id]) + ' ' + c.q); });
+    });
+    lines.push('', 'Selvtester');
+    DATA.tests.forEach(function (t) { lines.push('  ' + mark(ans[t.id]) + ' ' + t.name); });
+    if (s.fixes.length) {
+      lines.push('', 'Fiks før publisering:');
+      s.fixes.forEach(function (f) { lines.push('  - ' + f.text + ' (' + f.where + ')'); });
+    }
+    return lines.join('\n');
+  }
+
+  function pills(id, yesLabel, noLabel, groupLabel) {
+    var v = state.ans[id];
+    return '<div role="group" aria-label="' + esc(groupLabel) + '" class="row" style="gap:8px">' +
+      '<button type="button" class="pill yes" data-key="y-' + id + '" data-act="ans" data-id="' + id + '" data-v="yes" aria-pressed="' + (v === 'yes') + '">' + yesLabel + '</button>' +
+      '<button type="button" class="pill no" data-key="n-' + id + '" data-act="ans" data-id="' + id + '" data-v="no" aria-pressed="' + (v === 'no') + '">' + noLabel + '</button>' +
+      '</div>';
+  }
+
+  function navButtons(backTo, backLabel, nextTo, nextLabel) {
+    return '<div class="row between no-print">' +
+      (backTo ? '<button type="button" class="btn btn-secondary" data-key="back" data-act="go" data-to="' + backTo + '">' + backLabel + '</button>' : '<span></span>') +
+      '<button type="button" class="btn btn-primary" data-key="next" data-act="go" data-to="' + nextTo + '">' + nextLabel + '</button></div>';
+  }
+
+  function heading(no, title, sub) {
+    return '<div class="stack g6">' + (no ? '<p class="stepno">' + no + '</p>' : '') +
+      '<h2 id="screen-title" tabindex="-1">' + title + '</h2>' + (sub ? '<p class="muted">' + sub + '</p>' : '') + '</div>';
+  }
+
+  function viewIntro() {
+    return '<section class="card" style="padding:32px;gap:20px">' +
+      '<h2 id="screen-title" tabindex="-1" style="font-size:26px">Tre minutter før du trykker «Publiser»</h2>' +
+      '<p class="ink2" style="max-width:60ch">Bruk tre minutter nå, så slipper hundrevis av kolleger å bruke tre minutter hver på å lete. Du svarer på tre spørsmål: Hører dette hjemme på intranettet, og i så fall hvor? Følger det de fem prinsippene? Og forstår leseren det faktisk?</p>' +
+      '<ol class="stack ink2" style="margin:0;padding-left:22px;gap:8px">' +
+      '<li><strong style="color:var(--ink)">Hører dette hjemme på intranettet – og hvor?</strong> Noen få spørsmål gir deg en anbefalt plassering.</li>' +
+      '<li><strong style="color:var(--ink)">Sjekk mot de fem prinsippene.</strong> Ja/nei-spørsmål med eksempler på bra og dårlig praksis.</li>' +
+      '<li><strong style="color:var(--ink)">Er det faktisk brukervennlig?</strong> Tre raske selvtester.</li></ol>' +
+      '<p class="ink2">Til slutt får du grønt, gult eller rødt lys og en kort liste over hva som bør fikses. Ingen karakterer, og ingen rapport til noen.</p>' +
+      '<div class="row"><button type="button" class="btn btn-primary" data-key="start" data-act="go" data-to="step1">Start sjekken</button></div>' +
+      '</section>';
+  }
+
+  function viewStep1() {
+    var h = '<section class="stack g20">' + heading('Steg 1 av 3', 'Hører dette hjemme på intranettet – og hvor?');
+    if (state.path.length) {
+      h += '<div class="row" style="gap:8px"><span class="muted" style="font-size:13px">Dine svar:</span>' +
+        state.path.map(function (p) { return '<span class="chip">' + esc(p.label) + '</span>'; }).join('') + '</div>';
+    }
+    var placement = state.result ? DATA.results[state.result] : null;
+    if (!placement) {
+      var node = DATA.tree[state.node];
+      h += '<div class="card" style="padding:28px;gap:18px"><div class="stack g6">' +
+        '<p class="muted" style="font-size:13px">Spørsmål ' + (state.path.length + 1) + '</p>' +
+        '<h3 id="q-title" tabindex="-1" style="font-size:22px;outline:none">' + esc(node.q) + '</h3>' +
+        '<p class="muted" style="font-size:15px">' + esc(node.help) + '</p></div>' +
+        '<div class="stack g10" role="group" aria-labelledby="q-title">' +
+        node.options.map(function (o, i) {
+          return '<button type="button" class="opt" data-key="opt-' + state.node + '-' + i + '" data-act="pick" data-i="' + i + '"><span class="t">' + esc(o.label) + '</span>' + (o.sub ? '<span class="s">' + esc(o.sub) + '</span>' : '') + '</button>';
+        }).join('') + '</div></div>';
+    } else {
+      h += '<div class="box tone-' + placement.tone + '" id="placement" tabindex="-1">' +
+        '<p class="eyebrow" style="color:var(--ink2);letter-spacing:.04em">Anbefalt plassering</p>' +
+        '<h3 style="font-size:26px;line-height:1.2">' + esc(placement.title) + '</h3>' +
+        '<p class="ink2">' + esc(placement.why) + '</p>' +
+        '<p class="ink2" style="font-size:15px"><strong>Neste skritt:</strong> ' + esc(placement.next) + '</p></div>';
+    }
+    h += '<div class="row between no-print"><div class="row">';
+    if (state.path.length) {
+      h += '<button type="button" class="btn btn-secondary" style="min-height:44px;padding:10px 18px;font-size:15px" data-key="tback" data-act="treeBack">Forrige spørsmål</button>' +
+        '<button type="button" class="btn btn-link" style="font-size:15px" data-key="treset" data-act="treeReset">Start på nytt</button>';
+    }
+    h += '</div><button type="button" class="btn btn-primary" data-key="next" data-act="go" data-to="step2">' + (placement ? 'Videre til steg 2' : 'Hopp over til steg 2') + '</button></div>';
+    return h + '</section>';
+  }
+
+  function viewStep2() {
+    var h = '<section class="stack g20">' + heading('Steg 2 av 3', 'Sjekk mot de fem prinsippene', 'Svar ja eller nei. Ærlige nei-svar havner på fikselisten – og det er hele poenget.');
+    DATA.principles.forEach(function (p) {
+      var answered = p.checks.filter(function (c) { return state.ans[c.id]; }).length;
+      var open = !!state.open[p.id];
+      h += '<article class="card"><div class="row between" style="gap:14px;align-items:baseline">' +
+        '<h3 style="flex:1 1 420px;min-width:0"><span style="color:var(--accent)">' + p.code + '</span> · ' + esc(p.name) + '</h3>' +
+        '<span class="muted" style="font-size:13px">' + answered + ' av ' + p.checks.length + ' besvart</span></div>' +
+        '<p class="tagline">' + esc(p.tagline) + '</p>';
+      p.checks.forEach(function (c) {
+        h += '<div class="check"><p>' + esc(c.q) + '</p>' + pills(c.id, 'Ja', 'Nei', c.q) + '</div>';
+      });
+      h += '<div class="stack g12 no-print"><button type="button" class="toggle" data-key="tg-' + p.id + '" data-act="toggle" data-id="' + p.id + '" aria-expanded="' + open + '" aria-controls="ex-' + p.id + '">' + (open ? 'Skjul eksempel' : 'Vis eksempel') + '</button>' +
+        '<div class="examples" id="ex-' + p.id + '"' + (open ? '' : ' hidden') + '>' +
+        '<div class="ex good"><p class="h">Bra</p><p>' + esc(p.good) + '</p></div>' +
+        '<div class="ex bad"><p class="h">Dårlig</p><p>' + esc(p.bad) + '</p></div></div></div></article>';
+    });
+    return h + navButtons('step1', 'Tilbake til steg 1', 'step3', 'Videre til steg 3') + '</section>';
+  }
+
+  function viewStep3() {
+    var h = '<section class="stack g20">' + heading('Steg 3 av 3', 'Er det faktisk brukervennlig?', 'Tre raske tester. Har du en kollega i nærheten, blir de bedre. Ellers later du som du er en.');
+    DATA.tests.forEach(function (t) {
+      h += '<article class="card" style="gap:12px"><h3>' + esc(t.name) + '</h3><p class="ink2">' + esc(t.how) + '</p>' +
+        '<div class="check"><p style="font-weight:600">' + esc(t.q) + '</p>' + pills(t.id, 'Bestått', 'Ikke bestått', t.name) + '</div></article>';
+    });
+    return h + navButtons('step2', 'Tilbake til steg 2', 'result', 'Se resultatet') + '</section>';
+  }
+
+  function viewResult() {
+    var s = summary();
+    var h = '<section class="stack g20">' +
+      '<div class="box tone-' + s.tone + '"><div class="row" style="gap:14px;flex-wrap:nowrap"><span aria-hidden="true" class="dot" style="background:' + s.status.dot + '"></span>' +
+      '<h2 id="screen-title" tabindex="-1">' + esc(s.status.title) + '</h2></div><p style="font-size:17px">' + esc(s.status.text) + '</p></div>' +
+      '<div class="card" style="gap:6px"><p class="eyebrow" style="letter-spacing:.04em">Anbefalt plassering</p>' +
+      '<p style="font-size:20px;font-weight:600">' + esc(s.res ? s.res.title : 'Ikke valgt – gå tilbake til steg 1') + '</p></div>' +
+      '<div class="card" style="gap:14px"><h3>Fiks før publisering</h3>';
+    if (!s.fixes.length) h += '<p class="ink2">Ingenting å fikse. Godt jobbet!</p>';
+    else {
+      h += '<ul class="fixes">' + s.fixes.map(function (f) {
+        return '<li><span class="tag ' + (f.critical ? 'must' : 'should') + '">' + (f.critical ? 'Må fikses' : 'Bør fikses') + '</span>' +
+          '<div class="stack" style="gap:2px;min-width:0"><span style="font-weight:600">' + esc(f.text) + '</span><span class="muted" style="font-size:14px">' + esc(f.where) + '</span></div></li>';
+      }).join('') + '</ul>';
+    }
+    if (s.unanswered > 0) {
+      h += '<p class="muted" style="font-size:15px;border-top:1px solid var(--line2);padding-top:12px">' + s.unanswered + (s.unanswered === 1 ? ' punkt er ikke besvart.' : ' punkter er ikke besvart.') + ' Gå tilbake og svar for et komplett resultat.</p>';
+    }
+    h += '</div><div class="row no-print">' +
+      '<button type="button" class="btn btn-primary" data-key="copy" data-act="copy">' + (state.copied ? 'Kopiert!' : 'Kopier sjekklisten') + '</button>' +
+      '<button type="button" class="btn btn-secondary" data-key="print" data-act="print">Skriv ut</button>' +
+      '<button type="button" class="btn btn-link" data-key="reset" data-act="resetAll">Start en ny sjekk</button></div>';
+    if (state.copyFailed) {
+      h += '<div class="stack g6 no-print"><label for="fdp-copy" class="ink2" style="font-size:14px">Kopiering ble blokkert. Marker teksten og kopier den selv:</label>' +
+        '<textarea id="fdp-copy" readonly rows="12">' + esc(buildText(s)) + '</textarea></div>';
+    }
+    return h + '</section>';
+  }
+
+  function renderSteps() {
+    var cur = ORDER.indexOf(state.screen);
+    stepsEl.innerHTML = STEPS.map(function (s) {
+      var i = ORDER.indexOf(s[0]);
+      var cls = i === cur ? 'active' : (i < cur ? 'done' : '');
+      return '<button type="button" class="step ' + cls + '" data-key="nav-' + s[0] + '" data-act="go" data-to="' + s[0] + '"' + (i === cur ? ' aria-current="step"' : '') + '><span class="n">' + s[1] + '</span><span class="l">' + s[2] + '</span></button>';
+    }).join('');
+  }
+
+  function render(focusTarget) {
+    var active = document.activeElement;
+    var key = active && active.getAttribute ? active.getAttribute('data-key') : null;
+    renderSteps();
+    var v = { intro: viewIntro, step1: viewStep1, step2: viewStep2, step3: viewStep3, result: viewResult }[state.screen];
+    app.innerHTML = v();
+    var el = null;
+    if (focusTarget) el = document.getElementById(focusTarget);
+    else if (key) el = document.querySelector('[data-key="' + key + '"]');
+    if (el) el.focus({ preventScroll: !focusTarget });
+  }
+
+  function go(screen) {
+    state.screen = screen; state.copied = false; state.copyFailed = false;
+    render('screen-title');
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+
+  function onClick(e) {
+    var b = e.target.closest('[data-act]');
+    if (!b) return;
+    var act = b.getAttribute('data-act');
+    if (act === 'go') return go(b.getAttribute('data-to'));
+    if (act === 'ans') {
+      var id = b.getAttribute('data-id'), v = b.getAttribute('data-v');
+      state.ans[id] = state.ans[id] === v ? undefined : v;
+      state.copied = false;
+      return render();
+    }
+    if (act === 'toggle') {
+      var pid = b.getAttribute('data-id');
+      state.open[pid] = !state.open[pid];
+      return render();
+    }
+    if (act === 'pick') {
+      var o = DATA.tree[state.node].options[+b.getAttribute('data-i')];
+      state.path = state.path.concat([{ node: state.node, label: o.label }]);
+      if (o.result) { state.result = o.result; render('placement'); live.textContent = 'Anbefalt plassering: ' + DATA.results[o.result].title; }
+      else { state.node = o.next; state.result = null; render('q-title'); }
+      return;
+    }
+    if (act === 'treeBack') {
+      var last = state.path[state.path.length - 1];
+      state.path = state.path.slice(0, -1);
+      state.node = last ? last.node : 'q1'; state.result = null;
+      render('q-title');
+      return;
+    }
+    if (act === 'treeReset') {
+      state.path = []; state.node = 'q1'; state.result = null;
+      render('q-title');
+      return;
+    }
+    if (act === 'copy') {
+      var text = buildText(summary());
+      var done = function () { state.copied = true; state.copyFailed = false; render(); live.textContent = 'Sjekklisten er kopiert.'; };
+      var fail = function () { state.copyFailed = true; render('fdp-copy'); };
+      try { navigator.clipboard.writeText(text).then(done, fail); } catch (err) { fail(); }
+      return;
+    }
+    if (act === 'print') { try { window.print(); } catch (err) {} return; }
+    if (act === 'resetAll') { state = fresh(); state.screen = 'step1'; render('screen-title'); return; }
+  }
+
+  document.addEventListener('click', onClick);
+  render();
+})();
+</script>
+</body>
+</html>
