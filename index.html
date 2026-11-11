@@ -5,13 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Før du publiserer</title>
 <meta name="description" content="Interaktiv sjekkliste for innholdsprodusenter på intranettet: plassering, fem prinsipper og brukervennlighet.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F6F6F3;--ink:#1A1A1A;--ink2:#3D3D39;--muted:#5A5A55;--line:#E3E3DE;--line2:#EEEEEA;--btn-line:#C9C9C2;--accent:#1F4E8C;--accent-dark:#163A69;--accent-soft:#EAEFF6;--ok:#17603A;--ok-soft:#E8F3EC;--bad:#9C2A20;--bad-soft:#FBEAE8;--warn-soft:#FFF4D6;--warn-ink:#7A5200}
+:root{--bg:#FFFFFF;--ink:#000000;--ink2:#2B2B2B;--muted:#4A4A4A;--line:#B2B3B7;--line2:#E3E3E6;--btn-line:#000000;--accent:#3E31D6;--accent-dark:#000000;--accent-soft:#E6ECFF;--ok:#2EC483;--ok-soft:#CEFFDF;--bad:#DD0000;--bad-soft:#FEE0E0;--warn:#FEA11B;--warn-soft:#FFE8D4;--warn-ink:#000000}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5}
 .wrap{max-width:860px;margin:0 auto;padding:40px 16px 80px;display:flex;flex-direction:column;gap:28px}
 h1,h2,h3,p{margin:0}
 h1{font-size:40px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
@@ -30,30 +27,30 @@ h2:focus{outline:none}
 button{font-family:inherit;cursor:pointer}
 button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .btn{border-radius:8px;padding:12px 22px;min-height:48px;font-size:16px;font-weight:600}
-.btn-primary{background:var(--accent);color:#fff;border:0}
-.btn-primary:hover{background:var(--accent-dark)}
+.btn-primary{background:#000;color:#fff;border:0}
+.btn-primary:hover{background:var(--accent)}
 .btn-secondary{background:#fff;color:var(--ink);border:1px solid var(--btn-line)}
 .btn-link{background:transparent;color:var(--accent);border:0;padding:12px 8px;text-decoration:underline}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .step{text-align:left;border-radius:10px;padding:10px 14px;min-height:56px;background:#fff;color:var(--ink2);border:1.5px solid var(--line)}
-.step.done{background:var(--accent-soft);color:var(--accent-dark);border-color:#C5D3E8}
-.step.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.step.done{background:var(--accent-soft);color:#000;border-color:#86A4F7}
+.step.active{background:#000;color:#fff;border-color:#000}
 .step span{display:block;font-weight:600}
 .step .n{font-size:12px;opacity:.85}
 .step .l{font-size:14px}
-.chip{font-size:13px;background:var(--accent-soft);color:var(--accent-dark);border-radius:999px;padding:4px 10px}
+.chip{font-size:13px;background:var(--accent-soft);color:#000;border-radius:999px;padding:4px 10px}
 .opt{text-align:left;background:#fff;border:1.5px solid var(--btn-line);border-radius:10px;padding:14px 18px;min-height:52px;display:flex;flex-direction:column;gap:2px;color:var(--ink);width:100%}
 .opt:hover{border-color:var(--accent)}
 .opt .t{font-size:16px;font-weight:600}
 .opt .s{font-size:14px;color:var(--muted)}
 .box{border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px}
-.tone-green{background:var(--ok-soft);border:1.5px solid #9FCDB0}
-.tone-yellow{background:var(--warn-soft);border:1.5px solid #E8C96A}
-.tone-red{background:var(--bad-soft);border:1.5px solid #E5A79F}
+.tone-green{background:var(--ok-soft);border:1.5px solid var(--ok)}
+.tone-yellow{background:var(--warn-soft);border:1.5px solid var(--warn)}
+.tone-red{background:var(--bad-soft);border:1.5px solid #FB6666}
 .check{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-top:1px solid var(--line2);padding-top:14px}
 .check p{flex:1 1 360px;min-width:0}
 .pill{border-radius:8px;padding:8px 16px;min-height:44px;min-width:64px;font-size:15px;font-weight:600;background:#fff;color:var(--ink);border:1.5px solid var(--btn-line)}
-.pill.yes[aria-pressed="true"]{background:var(--ok);color:#fff;border-color:var(--ok)}
+.pill.yes[aria-pressed="true"]{background:var(--ok);color:#000;border-color:#000}
 .pill.no[aria-pressed="true"]{background:var(--bad);color:#fff;border-color:var(--bad)}
 .tagline{margin-top:-8px;color:var(--muted);font-size:15px;font-style:italic}
 .toggle{align-self:flex-start;background:transparent;border:0;padding:8px 0;min-height:44px;color:var(--accent);font-size:15px;font-weight:600}
@@ -61,12 +58,12 @@ button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid va
 .ex{border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:6px;font-size:15px}
 .ex.good{background:var(--ok-soft)}.ex.bad{background:var(--bad-soft)}
 .ex .h{font-size:13px;font-weight:700}
-.ex.good .h{color:var(--ok)}.ex.bad .h{color:var(--bad)}
+.ex .h{color:#000}
 .dot{width:22px;height:22px;border-radius:50%;flex:0 0 auto}
 .fixes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
 .fixes li{display:flex;gap:12px;align-items:flex-start;border-top:1px solid var(--line2);padding-top:10px}
 .tag{flex:0 0 auto;font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap}
-.tag.must{background:var(--bad-soft);color:var(--bad)}
+.tag.must{background:var(--bad);color:#fff}
 .tag.should{background:var(--warn-soft);color:var(--warn-ink)}
 textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;border:1px solid var(--btn-line);border-radius:8px;padding:12px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -180,9 +177,9 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
   };
 
   var STATUSES = {
-    green: { title: 'Grønt – klar til publisering', text: 'Alt er sjekket og bestått. Publiser med god samvittighet, og sett av datoen for neste gjennomgang.', dot: '#17603A' },
-    yellow: { title: 'Gult – nesten der', text: 'Noen småting står igjen. De tar trolig kortere tid å fikse enn å forklare senere.', dot: '#B07A00' },
-    red: { title: 'Rødt – vent litt med å publisere', text: 'Noe vesentlig mangler. Bedre å vente en dag enn å rydde opp i et år.', dot: '#9C2A20' }
+    green: { title: 'Grønt – klar til publisering', text: 'Alt er sjekket og bestått. Publiser med god samvittighet, og sett av datoen for neste gjennomgang.', dot: '#2EC483' },
+    yellow: { title: 'Gult – nesten der', text: 'Noen småting står igjen. De tar trolig kortere tid å fikse enn å forklare senere.', dot: '#FEA11B' },
+    red: { title: 'Rødt – vent litt med å publisere', text: 'Noe vesentlig mangler. Bedre å vente en dag enn å rydde opp i et år.', dot: '#DD0000' }
   };
 
   var STEPS = [['step1', 'Steg 1', 'Plassering'], ['step2', 'Steg 2', 'Fem prinsipper'], ['step3', 'Steg 3', 'Selvtester'], ['result', 'Resultat', 'Oppsummering']];
@@ -261,7 +258,7 @@ textarea{width:100%;font-family:ui-monospace,Menlo,monospace;font-size:13px;bord
   function viewIntro() {
     return '<section class="card" style="padding:32px;gap:20px">' +
       '<h2 id="screen-title" tabindex="-1" style="font-size:26px">Tre minutter før du trykker «Publiser»</h2>' +
-      '<p class="ink2" style="max-width:60ch">Bruk tre minutter nå, så slipper hundrevis av kolleger å bruke tre minutter hver på å lete. Du svarer på tre spørsmål: Hører dette hjemme på intranettet, og i så fall hvor? Følger det de fem prinsippene? Og forstår leseren det faktisk?</p>' +
+      '<p class="ink2" style="max-width:60ch">Bruk tre minutter nå, så slipper hundrevis av kolleger å bruke tre minutter hver på å lete.</p>' +
       '<ol class="stack ink2" style="margin:0;padding-left:22px;gap:8px">' +
       '<li><strong style="color:var(--ink)">Hører dette hjemme på intranettet – og hvor?</strong> Noen få spørsmål gir deg en anbefalt plassering.</li>' +
       '<li><strong style="color:var(--ink)">Sjekk mot de fem prinsippene.</strong> Ja/nei-spørsmål med eksempler på bra og dårlig praksis.</li>' +
